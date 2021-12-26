@@ -20,7 +20,7 @@ const Detail = () => {
 
   useEffect(() => {
     getData();
-  }, [])
+  });
 
   const backHandle = () => {
     navigate(-1);
@@ -32,7 +32,7 @@ const Detail = () => {
         <div className="flex justify-end">
           <XCircleIcon className="w-10 h-10 cursor-pointer transition-all duration-100 hover:scale-105" onClick={backHandle} />
         </div>
-        <p className="text-3xl sm:text-5xl text-center my-24">Sorry this page still underconstruction!</p>
+        <p className="text-3xl sm:text-5xl text-center my-24">Sorry {coin.name} page still underconstruction!</p>
       </div>
     </div>
   );
