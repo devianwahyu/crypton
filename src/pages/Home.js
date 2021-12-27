@@ -5,6 +5,7 @@ import Coin from "../components/Coin";
 
 function Home() {
   const [coins, setCoins] = useState([]);
+  const [filter, setFilter] = useState("");
 
   const getCoin = async () => {
     try {
@@ -27,9 +28,16 @@ function Home() {
           <FireIcon className="w-28 h-28 sm:w-52 sm:h-52" color="orange" />
           <p className="text-3xl sm:text-6xl text-slate-900 font-extrabold">Crypton!</p>
           <p className="text-xl mt-2 text-slate-900">Know Cryptocurrency easily now.</p>
+          <input className="mt-3 border-b-2 w-72 p-2" type="text" placeholder="Filter coins by name..." onChange={(e) => setFilter(e.target.value)} />
         </div>
-        <div className="m-5 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-          {coins.map(coin => (
+        <div className="m-5 justify-center grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+          {coins.filter(val => {
+            if (filter === "") {
+              return val;
+            } else {
+              return val.name.toLowerCase().includes(filter.toLowerCase());
+            }
+          }).map(coin => (
             <Coin
               key={coin.id}
               id={coin.id}
